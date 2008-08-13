@@ -1,0 +1,19 @@
+---
+name: Test-Kit
+version: 0.01
+author:
+  - 'Curtis "Ovid" Poe <ovid@cpan.org>'
+abstract: The great new Test::Kit!
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
+build_requires:
+  Test::More: 0
+provides:
+  Test::Kit:
+    file: lib/Test/Kit.pm
+    version: 0.01
+generated_by: Module::Build version 0.2808
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
