@@ -1,5 +1,15 @@
 Revision history for Test-Kit
 
-0.01    Date/time
-        First version, released on an unsuspecting world.
+0.100   18/10/2009
+        - Production release.
+        - Pod patches from Gabrielle Roth
+          (http://rt.cpan.org/Public/Bug/Display.html?id=46124)
+        - Fixed bug where Test::Most and Test::More clash.
+
+0.02    15/08/2008
+        - Added Test::Differences as a build dependency.
+        - Added a version number to Test::Kit::Features.
+
+0.01    14/08/2008
+        - Basic functionality.  Compose tests and limited test features.
 

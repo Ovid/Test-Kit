@@ -25,11 +25,14 @@ qr/\A\QFunction &ok exported from more than one package:  NaughtyTest, Test::Mor
     # test composition
     #
 
+    # XXX Because Test::Kit->import gives me an import() method which causes
+    # the next test to fail.
+    undef *Test::Kit::Tester::import;
     Test::Kit->_reset;
     {
-        Test::Kit::Tester::ok +Test::Kit->import(
+        Test::Kit::Tester::ok( +Test::Kit->import(
             qw/Test::More Test::Differences/),
-          '... and composing non-conflicting packages should succeed';
+          '... and composing non-conflicting packages should succeed');
     }
 }
 ok 1, '... and the Test::More functions should be exported';

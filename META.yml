@@ -1,19 +1,31 @@
 ---
 name: Test-Kit
-version: 0.01
+version: 0.100
 author:
   - 'Curtis "Ovid" Poe <ovid@cpan.org>'
-abstract: The great new Test::Kit!
+abstract: Build custom test packages with only the features you want.
 license: perl
 resources:
   license: http://dev.perl.org/licenses/
 build_requires:
+  Test::Differences: 0.48
+  Test::MockObject: 1.09
+requires:
   Test::More: 0
+  base: 2.11
+  namespace::clean: 0.08
+configure_requires:
+  Module::Build: 0.35
 provides:
   Test::Kit:
     file: lib/Test/Kit.pm
-    version: 0.01
-generated_by: Module::Build version 0.2808
+    version: 0.100
+  Test::Kit::Features:
+    file: lib/Test/Kit/Features.pm
+    version: 0.100
+  Test::Kit::Result:
+    file: lib/Test/Kit/Features.pm
+generated_by: Module::Build version 0.35
 meta-spec:
-  url: http://module-build.sourceforge.net/META-spec-v1.2.html
-  version: 1.2
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
