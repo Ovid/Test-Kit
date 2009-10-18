@@ -8,7 +8,6 @@ META.yml
 README
 t/00-load.t
 t/basic.t
-t/boilerplate.t
 t/compose.t
 t/exceptions.t
 t/exclude.t
@@ -17,7 +16,7 @@ t/lib/ComposedTests.pm
 t/lib/NaughtyTest.pm
 t/lib/TestIs.pm
 t/lib/TestIsDeeply.pm
-t/lib/MyTests.t
-t/pod-coverage.t
-t/pod.t
+t/lib/MyTests.pm
 t/rename.t
+xt/pod-coverage.t
+xt/pod.t

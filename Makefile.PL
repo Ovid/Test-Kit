@@ -6,7 +6,6 @@ WriteMakefile
           'VERSION_FROM' => 'lib/Test/Kit.pm',
           'PREREQ_PM' => {
                            'Test::Differences' => '0.48',
-                           'Test::MockObject' => '1.09',
                            'Test::More' => 0,
                            'base' => '2.11',
                            'namespace::clean' => '0.08'
