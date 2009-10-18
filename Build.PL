@@ -9,7 +9,6 @@ my $builder = Module::Build->new(
     dist_version_from => 'lib/Test/Kit.pm',
     build_requires    => { 
         'Test::Differences' => 0.48,
-        'Test::MockObject'  => 1.09,
     },
     requires          => {
         'Test::More'       => 0,
