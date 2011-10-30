@@ -123,7 +123,6 @@ my %FUNCTION;
 sub import {
     my $class    = shift;
     my $callpack = caller(0);
-    my $target   = caller(1);
 
     my $basic_functions = namespace::clean->get_functions($class);
 
@@ -142,7 +141,6 @@ sub import {
             $packages->{$package}, $package, $internal_package, );
     }
     $class->_validate_functions($callpack);
-    $class->_export_to($callpack => $target);
 
     return 1;
 }
