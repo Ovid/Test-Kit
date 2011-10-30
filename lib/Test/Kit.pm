@@ -143,13 +143,6 @@ sub import {
     $class->_validate_functions($callpack);
     $class->_export_to($callpack);
 
-    {
-
-        # Otherwise, "local $TODO" won't work for caller.
-        no strict 'refs';
-        our $TODO;
-        *{"$callpack\::TODO"} = \$TODO;
-    }
     return 1;
 }
 
@@ -260,6 +253,15 @@ sub _export_to {
         no strict 'refs';
         *$target_function = $definition->{glob};
     }
+
+    {
+
+        # Otherwise, "local $TODO" won't work for caller.
+        no strict 'refs';
+        our $TODO;
+        *{"$target\::TODO"} = \$TODO;
+    }
+
     return 1;
 }
 
