@@ -183,7 +183,7 @@ sub _on_fail {
             ( $PACKAGE, $FILENAME, $LINE ) = caller(1);
             my $result = $ok_func->(@_);
             if($builder->can('history')) {
-                $builder->{TEST_KIT_test_failed} = !$builder->history->can_succeed;
+                $builder->{TEST_KIT_test_failed} = $builder->history->last_result->is_fail;
             } else {
                 $builder->{TEST_KIT_test_failed} = !( $builder->summary )[-1];
             }
