@@ -122,7 +122,7 @@ my %FUNCTION;
 
 sub import {
     my $class    = shift;
-    my $callpack = caller(1);
+    my $callpack = caller(0);
 
     my $basic_functions = namespace::clean->get_functions($class);
 
@@ -141,21 +141,14 @@ sub import {
             $packages->{$package}, $package, $internal_package, );
     }
     $class->_validate_functions($callpack);
-    $class->_export_to($callpack);
 
-    {
-
-        # Otherwise, "local $TODO" won't work for caller.
-        no strict 'refs';
-        our $TODO;
-        *{"$callpack\::TODO"} = \$TODO;
-    }
     return 1;
 }
 
 sub _setup_import {
-    my ( $class, $features ) = @_;
+    my ( $my_class, $features ) = @_;
     my $callpack = caller(1);              # this is the composed test package
+
     my $import   = "$callpack\::import";
     my $isa      = "$callpack\::ISA";
     no strict 'refs';
@@ -166,6 +159,10 @@ sub _setup_import {
         unshift @$isa => 'Test::Kit::Features';
         *$import = sub {
             my ( $class, @args ) = @_;
+
+            my $target = caller(0);
+            $my_class->_export_to($callpack => $target);
+
             @args = $class->BUILD(@args) if $class->can('BUILD');
             @args = $class->_setup_features( $features, @args );
             @_ = ( $class, @args );
@@ -253,13 +250,22 @@ sub _remove_basic_functions {
 }
 
 sub _export_to {
-    my ( $class, $target ) = @_;
+    my ( $class, $source, $target ) = @_;
 
-    while ( my ( $function, $definition ) = each %{ $FUNCTION{$target} } ) {
+    while ( my ( $function, $definition ) = each %{ $FUNCTION{$source} } ) {
         my $target_function = "$target\::$function";
         no strict 'refs';
         *$target_function = $definition->{glob};
     }
+
+    {
+
+        # Otherwise, "local $TODO" won't work for caller.
+        no strict 'refs';
+        our $TODO;
+        *{"$target\::TODO"} = \$TODO;
+    }
+
     return 1;
 }
 

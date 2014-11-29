@@ -34,6 +34,13 @@ qr/\A\QFunction &ok exported from more than one package:  NaughtyTest, Test::Mor
             qw/Test::More Test::Differences/),
           '... and composing non-conflicting packages should succeed');
     }
+
+    # Fake our existence
+    $INC{'Test/Kit/Tester.pm'} = __FILE__;
 }
+
+
+use Test::Kit::Tester;
+
 ok 1, '... and the Test::More functions should be exported';
 eq_or_diff [ 1, 3 ], [ 1, 3 ], '... as should Test::Differences functions';
